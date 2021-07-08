@@ -1,10 +1,11 @@
 <!--Create-->
 
-function getCreate() {
+function doCreateEmployee() {
 
     Swal.fire({
 
         title: 'Create Employee Success!!!',
+
         width: 700,
         padding: '12em',
         background: '#fff url("https://i.pinimg.com/originals/a8/07/91/a80791746c66c382faf2209c02926b6e.gif")',
@@ -65,6 +66,9 @@ function getCreate() {
 
 
                 },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus); alert("Error: " + errorThrown);
+                }
 
             });
 
@@ -104,6 +108,7 @@ function getDelete(value) {
                         )
                         document.getElementById(value + "-a").innerHTML = "";
                     },
+
 
                 });
             }
@@ -172,22 +177,42 @@ function submitEdit() {
         type: "post",
         data: JSON.stringify(employeeData),
         url: "edit-customer",
-        success: function (data) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Edit Customer Successfully!',
-                showConfirmButton: false,
-                timer: 2000
-            });
+        // success: function (data) {
+        //     Swal.fire({
+        //         icon: 'success',
+        //         title: 'Edit Customer Successfully!',
+        //         showConfirmButton: false,
+        //         timer: 2000
+        //     });
+        //
+        //
+        //     // console.log(data);
+        //     // console.log(data.firstName);
+        //
+        //     document.getElementById(data.id+"-firstName").innerHTML = data.firstName;
+        //     document.getElementById(data.id+"-lastName").innerHTML = data.lastName;
+        //     document.getElementById(data.id+"-email").innerHTML = data.email;
+        //     document.getElementById(data.id+"-province").innerHTML = data.province.name;
+        //
+        // },
 
-            // console.log(data);
-            // console.log(data.firstName);
+    }).done((data) =>{
+        Swal.fire({
+            icon: 'success',
+            title: 'Edit Customer Successfully!',
+            showConfirmButton: false,
+            timer: 2000
+        });
 
-            document.getElementById(data.id+"-firstName").innerHTML = data.firstName;
-            document.getElementById(data.id+"-lastName").innerHTML = data.lastName;
-            document.getElementById(data.id+"-email").innerHTML = data.email;
-            document.getElementById(data.id+"-province").innerHTML = data.province.name;
 
-        },
+        // console.log(data);
+        // console.log(data.firstName);
+
+        document.getElementById(data.id+"-firstName").innerHTML = data.firstName;
+        document.getElementById(data.id+"-lastName").innerHTML = data.lastName;
+        document.getElementById(data.id+"-email").innerHTML = data.email;
+        document.getElementById(data.id+"-province").innerHTML = data.province.name;
+    }).fail(function () {
+        alert("Status: " + textStatus); alert("Error: " + errorThrown);
     });
 }
