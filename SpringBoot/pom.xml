@@ -126,14 +126,24 @@
 
 	</dependencies>
 
-<!--	<build>-->
-<!--		<plugins>-->
-<!--			<plugin>-->
-<!--				<groupId>org.springframework.boot</groupId>-->
-<!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--			</plugin>-->
-<!--		</plugins>-->
-<!--	</build>-->
+	<build>-->
+		<plugin>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+			<configuration>
+			    <mainClass>com.places.Main</mainClass>
+			</configuration>
+
+			<executions>
+			    <execution>
+				<goals>
+				    <goal>repackage</goal>
+				</goals>
+			    </execution>
+		       </executions>
+
+		</plugin>
+	</build>
 	<repositories>
 		<repository>
 			<id>spring-milestones</id>
